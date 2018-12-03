@@ -6,7 +6,7 @@
 #    By: lvasseur <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/22 13:30:54 by lvasseur          #+#    #+#              #
-#    Updated: 2018/12/03 16:55:42 by lvasseur         ###   ########.fr        #
+#    Updated: 2018/12/03 17:03:28 by lvasseur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC_PATH = ./include/ $(LIB_PATH)glfw/include/
 GCC_FLGS = -Werror -Wextra -Wall
 GCC_LIBS = -lglfw3 -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
 
-SRC_NAME =	main.cpp
+SRC_NAME =	main.cpp Window.cpp
 OBJ_NAME = $(SRC_NAME:.cpp=.o)
 LIB_NAME = glfw/src
 
