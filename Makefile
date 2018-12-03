@@ -6,24 +6,24 @@
 #    By: lvasseur <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/22 13:30:54 by lvasseur          #+#    #+#              #
-#    Updated: 2018/12/03 16:41:46 by lvasseur         ###   ########.fr        #
+#    Updated: 2018/12/03 16:55:42 by lvasseur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = particle_system
-CC = gcc
+CC = clang++
 
 SRC_PATH = ./src/
 OBJ_PATH = ./obj/
 LIB_PATH = ./lib/
-INC_PATH = ./include/ $(LIB_PATH)libft/ $(LIB_PATH)glfw/include/ $(LIB_PATH)glew/
+INC_PATH = ./include/ $(LIB_PATH)glfw/include/
 
 GCC_FLGS = -Werror -Wextra -Wall
 GCC_LIBS = -lglfw3 -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
 
-SRC_NAME =	main.c
-OBJ_NAME = $(SRC_NAME:.c=.o)
-LIB_NAME = libft glfw/src
+SRC_NAME =	main.cpp
+OBJ_NAME = $(SRC_NAME:.cpp=.o)
+LIB_NAME = glfw/src
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
@@ -33,10 +33,9 @@ LIB = $(addprefix -L$(LIB_PATH),$(LIB_NAME))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C $(LIB_PATH)libft -j
-	$(CC) $(GCC_FLGS) $(LIB) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
+	$(CC) $(GCC_FLGS) $(LIB) $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
 
@@ -45,7 +44,6 @@ clean:
 	rm -rf $(OBJ_PATH)
 
 fclean: clean
-	make -C $(LIB_PATH)libft fclean
 	rm -f $(NAME)
 
 re: fclean all
